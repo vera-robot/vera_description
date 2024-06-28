@@ -48,8 +48,8 @@
     </joint>
   </xacro:macro>
 
-  <xacro:macro name="torso" params="length width height mass pos_z pos_x">
-    <link name="torso">
+  <xacro:macro name="torso_link" params="length width height mass pos_z pos_x">
+    <link name="torso_link">
       <visual>
         <origin xyz="${-length/2 - 0.015} 0 ${-height/2}" rpy="1.57 0 0"/>
         <geometry>
@@ -78,7 +78,7 @@
 
     <joint name="base_to_torso" type="fixed">
       <parent link="base_link"/>
-      <child link="torso"/>
+      <child link="torso_link"/>
       <origin xyz="${pos_x} 0 ${pos_z}" rpy="0 0 0"/>
     </joint>
   </xacro:macro>

@@ -1,13 +1,14 @@
 <?xml version="1.0"?>
 <robot name="linorobot2_2wd" xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <xacro:include filename="$(find vera_description)/urdf/mecanum_properties.urdf.xacro" />
+  <xacro:include filename="$(find vera_description)/urdf/utils/mecanum_properties.urdf.xacro" />
   <xacro:include filename="$(find vera_description)/urdf/mech/base.urdf.xacro" />
   <xacro:include filename="$(find vera_description)/urdf/mech/mecanum_wheel.urdf.xacro" />
   <xacro:include filename="$(find vera_description)/urdf/sensors/imu.urdf.xacro" />
   <xacro:include filename="$(find vera_description)/urdf/sensors/generic_laser.urdf.xacro" />
   <xacro:include filename="$(find vera_description)/urdf/sensors/depth_sensor.urdf.xacro" />
   <xacro:include filename="$(find vera_description)/urdf/controllers/omni_drive.urdf.xacro" />
+  <xacro:include filename="$(find vera_description)/urdf/mech/manipulator.xml" />
 
   <xacro:base 
     length="${base_length}" 
@@ -56,7 +57,7 @@
     mass="${wheel_mass}"
   />
 
-  <xacro:torso 
+  <xacro:torso_link 
     length="${torso_length}" 
     width="${torso_width}" 
     height="${torso_height}" 
@@ -64,6 +65,8 @@
     pos_z="${torso_pos_z}"
     pos_x="${torso_pos_x}"
   />
+
+  <xacro:manipulator/>
 
   <!-- <xacro:imu/>
   
