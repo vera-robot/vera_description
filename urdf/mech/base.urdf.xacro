@@ -7,7 +7,7 @@
       <visual>
         <origin xyz="${-length/2} ${-width/2} ${-height/2}" rpy="1.57 0 0"/>
         <geometry>
-          <mesh filename="package://vera_description/meshes/structure/base.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="file://$(find vera_description)/meshes/structure/base.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="yellow">
           <color rgba="0.8784 0.6627 0.6627 1.0"/>
@@ -15,9 +15,9 @@
       </visual>
       
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="${-length/2} ${-width/2} ${-height/2}" rpy="1.57 0 0"/>
         <geometry>
-          <box size="${length} ${width} ${height}"/>
+          <mesh filename="file://$(find vera_description)/meshes/structure/base.stl" scale="0.001 0.001 0.001"/>
         </geometry>
       </collision>
 
@@ -53,7 +53,7 @@
       <visual>
         <origin xyz="${-length/2 - 0.015} 0 ${-height/2}" rpy="1.57 0 0"/>
         <geometry>
-          <mesh filename="package://vera_description/meshes/structure/torso.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="file://$(find vera_description)/meshes/structure/torso.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="yellow">
           <color rgba="0.8784 0.6627 0.6627 1.0"/>
@@ -63,7 +63,7 @@
       <collision>
         <origin xyz="${-length/2 - 0.015} 0 ${-height/2}" rpy="1.57 0 0"/>
         <geometry>
-          <box size="${length} ${width} ${height}"/>
+          <mesh filename="file://$(find vera_description)/meshes/structure/torso.stl" scale="0.001 0.001 0.001"/>
         </geometry>
       </collision>
 

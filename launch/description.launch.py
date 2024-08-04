@@ -1,17 +1,3 @@
-# Copyright (c) 2021 Juan Miguel Jimeno
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http:#www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
 import os
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
@@ -42,6 +28,13 @@ def generate_launch_description():
             name='publish_joints', 
             default_value='true',
             description='Launch joint_states_publisher'
+        ),
+        
+        DeclareLaunchArgument(
+            name='jsp_gui',
+            default_value='true',
+            choices=['true', 'false'],
+            description='Launch joint_state_publisher GUI'
         ),
 
         DeclareLaunchArgument(
@@ -87,6 +80,13 @@ def generate_launch_description():
             arguments=['-d', rviz_config_path],
             condition=IfCondition(LaunchConfiguration("rviz")),
             parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time')}]
+        ),
+        
+        Node(
+            package='joint_state_publisher_gui',
+            executable='joint_state_publisher_gui',
+            name='joint_state_publisher_gui',
+            condition=IfCondition(LaunchConfiguration("jsp_gui"))
         )
     ])
 

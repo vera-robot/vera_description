@@ -1,0 +1,61 @@
+# gz topic published by the JointState plugin
+- ros_topic_name: "joint_states"
+  gz_topic_name: "joint_states"
+  ros_type_name: "sensor_msgs/msg/JointState"
+  gz_type_name: "ignition.msgs.Model" # In future, this will be gz.msgs.Model
+  direction: GZ_TO_ROS
+
+# gz topic subscribed by the JointPositionController plugin
+- ros_topic_name: "model/vera/joint/manipulator_base_joint/cmd_pos"
+  gz_topic_name: "model/vera/joint/manipulator_base_joint/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "ignition.msgs.Double" # In future, this will be gz.msgs.Double
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "model/vera/joint/manipulator_shoulder_pan_joint/cmd_pos"
+  gz_topic_name: "model/vera/joint/manipulator_shoulder_pan_joint/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "ignition.msgs.Double" # In future, this will be gz.msgs.Double
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "model/vera/joint/manipulator_shoulder_lift_joint/cmd_pos"
+  gz_topic_name: "model/vera/joint/manipulator_shoulder_lift_joint/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "ignition.msgs.Double" # In future, this will be gz.msgs.Double
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "model/vera/joint/manipulator_elbow_pan_joint/cmd_pos"
+  gz_topic_name: "model/vera/joint/manipulator_elbow_pan_joint/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "ignition.msgs.Double" # In future, this will be gz.msgs.Double
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "model/vera/joint/manipulator_elbow_lift_joint/cmd_pos"
+  gz_topic_name: "model/vera/joint/manipulator_elbow_lift_joint/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "ignition.msgs.Double" # In future, this will be gz.msgs.Double
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "model/vera/joint/manipulator_wrist_pan_joint/cmd_pos"
+  gz_topic_name: "model/vera/joint/manipulator_wrist_pan_joint/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "ignition.msgs.Double" # In future, this will be gz.msgs.Double
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "model/vera/joint/manipulator_wrist_lift_joint/cmd_pos"
+  gz_topic_name: "model/vera/joint/manipulator_wrist_lift_joint/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "ignition.msgs.Double" # In future, this will be gz.msgs.Double
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "model/vera/joint/gripper_right_joint/cmd_pos"
+  gz_topic_name: "model/vera/joint/gripper_right_joint/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "ignition.msgs.Double" # In future, this will be gz.msgs.Double
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "model/vera/joint/gripper_left_joint/cmd_pos"
+  gz_topic_name: "model/vera/joint/gripper_left_joint/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "ignition.msgs.Double" # In future, this will be gz.msgs.Double
+  direction: ROS_TO_GZ

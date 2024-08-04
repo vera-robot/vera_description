@@ -1,0 +1,82 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+    <xacro:macro name="manipulator_controllers">
+        <gazebo>
+            <plugin filename="ign_ros2_control-system" name="ign_ros2_control::IgnitionROS2ControlPlugin">
+                <parameters>$(find vera_description)/config/ros_controllers.yaml</parameters>
+            </plugin>
+        </gazebo>
+        
+        <ros2_control name="RobotSystem" type="system">
+            <hardware>
+                <plugin>ign_ros2_control/IgnitionSystem</plugin>
+            </hardware>
+
+            <joint name="manipulator_shoulder_pan_joint">
+                <command_interface name="position">
+                    <param name="min">-1.57</param>
+                    <param name="max">1.57</param>
+                </command_interface>
+                <state_interface name="position"/>
+            </joint>
+
+            <joint name="manipulator_shoulder_lift_joint">
+                <command_interface name="position">
+                    <param name="min">-1.57</param>
+                    <param name="max">1.57</param>
+                </command_interface>
+                <state_interface name="position"/>
+            </joint>
+
+            <joint name="manipulator_elbow_pan_joint">
+                <command_interface name="position">
+                    <param name="min">-1.57</param>
+                    <param name="max">1.57</param>
+                </command_interface>
+                <state_interface name="position"/>
+            </joint>
+
+            <joint name="manipulator_elbow_lift_joint">
+                <command_interface name="position">
+                    <param name="min">-2.55</param>
+                    <param name="max">0.9</param>
+                </command_interface>
+                <state_interface name="position"/>
+            </joint>
+
+            <joint name="manipulator_wrist_pan_joint">
+                <command_interface name="position">
+                    <param name="min">-2.879793</param>
+                    <param name="max">2.879793</param>
+                </command_interface>
+                <state_interface name="position"/>
+            </joint>
+
+            <joint name="manipulator_wrist_lift_joint">
+                <command_interface name="position">
+                    <param name="min">-0.64</param>
+                    <param name="max">0.64</param>
+                </command_interface>
+                <state_interface name="position"/>
+            </joint>
+
+            <joint name="gripper_right_joint">
+                <command_interface name="position">
+                    <param name="min">-0.8</param>
+                    <param name="max">0.0</param>
+                </command_interface>
+                <state_interface name="position"/>
+            </joint>
+
+            <joint name="gripper_left_joint">
+                <command_interface name="position">
+                    <param name="min">0.0</param>
+                    <param name="max">0.8</param>
+                </command_interface>
+                <state_interface name="position"/>
+            </joint>
+
+        </ros2_control>    
+    </xacro:macro>
+</robot>

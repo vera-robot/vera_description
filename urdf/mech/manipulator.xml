@@ -3,6 +3,7 @@
     <xacro:include filename="$(find vera_description)/urdf/utils/manipulator_properties.xml" />
     <xacro:include filename="$(find vera_description)/urdf/utils/manipulator_utils.xml" />
     <xacro:include filename="$(find vera_description)/urdf/utils/mecanum_properties.urdf.xacro" />
+    <xacro:include filename="$(find vera_description)/urdf/utils/manipulator_controllers.xml" />
 
     <xacro:macro name="manipulator_support_link">
         <link name="manipulator_support_link">
@@ -36,7 +37,7 @@
             <visual>
                 <origin xyz="0 0 ${-manipulator_base_height/2}" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://vera_description/meshes/manipulator/base_link.stl" />
+                    <mesh filename="file://$(find vera_description)/meshes/manipulator/base_link.stl" />
                 </geometry>
                 <material name="gray">
                     <color rgba="0.5 0.5 0.5 1"/>
@@ -45,7 +46,7 @@
             <collision>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://vera_description/meshes/manipulator/base_link_col.stl" />
+                    <mesh filename="file://$(find vera_description)/meshes/manipulator/base_link_col.stl" />
                 </geometry>
             </collision>
             <xacro:inertial_manipulator_base_link mass="0.225814419604843"/>
@@ -63,7 +64,7 @@
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://vera_description/meshes/manipulator/shoulder_pan_link.stl" />
+                    <mesh filename="file://$(find vera_description)/meshes/manipulator/shoulder_pan_link.stl" />
                 </geometry>
                 <material name="gray">
                     <color rgba="0.5 0.5 0.5 1"/>
@@ -72,7 +73,7 @@
             <collision>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://vera_description/meshes/manipulator/shoulder_pan_link_col.stl" />
+                    <mesh filename="file://$(find vera_description)/meshes/manipulator/shoulder_pan_link_col.stl" />
                 </geometry>
             </collision>
             <xacro:inertial_manipulator_shoulder_pan_link mass="0.0289102664622999"/>
@@ -83,7 +84,7 @@
             <parent link="manipulator_base_link" />
             <child link="manipulator_shoulder_pan_link" />
             <axis xyz="0 0 1" />
-            <limit effort="0" velocity="5" lower="-${pi/2}" upper="${pi}"/>
+            <limit effort="0" velocity="5" lower="-${pi/2}" upper="${pi/2}"/>
         </joint>   
     </xacro:macro>
 
@@ -92,7 +93,7 @@
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://vera_description/meshes/manipulator/shoulder_lift_link.stl" />
+                    <mesh filename="file://$(find vera_description)/meshes/manipulator/shoulder_lift_link.stl" />
                 </geometry>
                 <material name="gray">
                     <color rgba="0.5 0.5 0.5 1"/>
@@ -101,7 +102,7 @@
             <collision>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://vera_description/meshes/manipulator/shoulder_lift_link_col.stl" />
+                    <mesh filename="file://$(find vera_description)/meshes/manipulator/shoulder_lift_link_col.stl" />
                 </geometry>
             </collision>
             <xacro:inertial_shoulder_lift_link mass="0.611796741662792"/>
@@ -121,7 +122,7 @@
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://vera_description/meshes/manipulator/elbow_pan.stl"/>
+                    <mesh filename="file://$(find vera_description)/meshes/manipulator/elbow_pan.stl"/>
                 </geometry>
                 <material name="gray">
                     <color rgba="0.5 0.5 0.5 1"/>
@@ -130,7 +131,7 @@
             <collision>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://vera_description/meshes/manipulator/elbow_pan_col.stl"/>
+                    <mesh filename="file://$(find vera_description)/meshes/manipulator/elbow_pan_col.stl"/>
                 </geometry>
             </collision>
             <xacro:inertial_elbow_pan_link mass="0.0289102660424069"/>
@@ -141,7 +142,7 @@
             <parent link="manipulator_shoulder_lift_link" />
             <child link="manipulator_elbow_pan_link" />
             <axis xyz="1 0 0" />
-            <limit lower="-1.57" upper="1.57" effort="0" velocity="5" />
+            <limit effort="0" velocity="5" lower="-${pi/2}" upper="${pi/2}"/>
         </joint>
     </xacro:macro>
 
@@ -150,7 +151,7 @@
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://vera_description/meshes/manipulator/elbow_lift.stl"/>
+                    <mesh filename="file://$(find vera_description)/meshes/manipulator/elbow_lift.stl"/>
                 </geometry>
                 <material name="gray">
                     <color rgba="0.5 0.5 0.5 1"/>
@@ -159,18 +160,18 @@
             <collision>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://vera_description/meshes/manipulator/elbow_lift_col.stl"/>
+                    <mesh filename="file://$(find vera_description)/meshes/manipulator/elbow_lift_col.stl"/>
                 </geometry>
             </collision>
             <xacro:inertial_elbow_lift_link mass="0.611796742118779"/>
         </link>
 
-        <joint name="elbow_lift_joint" type="revolute">
+        <joint name="manipulator_elbow_lift_joint" type="revolute">
             <origin xyz="0.02285 0 -0.048" rpy="0 0 0" />
             <parent link="manipulator_elbow_pan_link" />
             <child link="manipulator_elbow_lift_link" />
             <axis xyz="0 -1 0" />
-            <limit lower="-3.55" upper="0.9" effort="0" velocity="5" />
+            <limit lower="-2.55" upper="0.9" effort="0" velocity="5" />
         </joint>
     </xacro:macro>
     
@@ -179,7 +180,7 @@
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0"/>
                 <geometry>
-                    <mesh  filename="package://vera_description/meshes/manipulator/wrist_pan.stl" />
+                    <mesh  filename="file://$(find vera_description)/meshes/manipulator/wrist_pan.stl" />
                 </geometry>
                 <material name="gray">
                     <color rgba="0.5 0.5 0.5 1"/>
@@ -188,13 +189,13 @@
             <collision>
                 <origin xyz="0 0 0" rpy="0 0 0"/>
                 <geometry>
-                    <mesh filename="package://vera_description/meshes/manipulator/wrist_pan_col.stl" />
+                    <mesh filename="file://$(find vera_description)/meshes/manipulator/wrist_pan_col.stl" />
                 </geometry>
             </collision> 
             <xacro:inertial_wrist_pan_link mass="0.0368976416562371"/>
         </link>
 
-        <joint name="wrist_pan_joint" type="revolute">
+        <joint name="manipulator_wrist_pan_joint" type="revolute">
             <origin xyz="0.1439 0 0" rpy="0 0 0" />
             <parent link="manipulator_elbow_lift_link" />
             <child link="manipulator_wrist_pan_link" />
@@ -208,7 +209,7 @@
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0"/>
                 <geometry>
-                    <mesh  filename="package://vera_description/meshes/manipulator/wrist_lift.stl" />
+                    <mesh  filename="file://$(find vera_description)/meshes/manipulator/wrist_lift.stl" />
                 </geometry>
                 <material name="gray">
                     <color rgba="0.5 0.5 0.5 1"/>
@@ -217,7 +218,7 @@
             <collision>
                 <origin xyz="0 0 0" rpy="0 0 0"/>
                 <geometry>
-                    <mesh filename="package://vera_description/meshes/manipulator/wrist_lift_col.stl" />
+                    <mesh filename="file://$(find vera_description)/meshes/manipulator/wrist_lift_col.stl" />
                 </geometry>
             </collision>
             <xacro:inertial_wrist_lift_link mass="0.482627734525522"/>
@@ -228,7 +229,7 @@
             <parent link="manipulator_wrist_pan_link" />
             <child link="manipulator_wrist_lift_link" />
             <axis xyz="0 -1 0" />
-            <limit lower="-0.64" upper="4" effort="0" velocity="5" />
+            <limit lower="-0.64" upper="0.64" effort="0" velocity="5" />
         </joint>
     </xacro:macro>
     
@@ -237,7 +238,7 @@
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://vera_description/meshes/manipulator/gripper_meshes/gripper_right.stl"/>
+                    <mesh filename="file://$(find vera_description)/meshes/manipulator/gripper_meshes/gripper_right.stl"/>
                 </geometry>
                 <material name="dark_grey">
                     <color rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
@@ -246,7 +247,7 @@
             <collision>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://vera_description/meshes/manipulator/gripper_meshes/gripper_right_col.stl"/>
+                    <mesh filename="file://$(find vera_description)/meshes/manipulator/gripper_meshes/gripper_right_col.stl"/>
                 </geometry>
             </collision>
             <xacro:inertial_gripper_right_link mass="0.0392347304267543"/>
@@ -266,7 +267,7 @@
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://vera_description/meshes/manipulator/gripper_meshes/gripper_right_end.stl"/>
+                    <mesh filename="file://$(find vera_description)/meshes/manipulator/gripper_meshes/gripper_right_end.stl"/>
                 </geometry>
                 <material name="white">
                     <color rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
@@ -275,7 +276,7 @@
             <collision>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://vera_description/meshes/manipulator/gripper_meshes/gripper_right_end.stl"/>
+                    <mesh filename="file://$(find vera_description)/meshes/manipulator/gripper_meshes/gripper_right_end.stl"/>
                 </geometry>
             </collision>
             <xacro:inertial_gripper_right_end_link mass="0.0535201883186937"/>
@@ -295,7 +296,7 @@
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://vera_description/meshes/manipulator/gripper_meshes/gripper_left.stl" />
+                    <mesh filename="file://$(find vera_description)/meshes/manipulator/gripper_meshes/gripper_left.stl" />
                 </geometry>
                 <material name="dark_grey">
                     <color rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
@@ -304,7 +305,7 @@
             <collision>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://vera_description/meshes/manipulator/gripper_meshes/gripper_left.stl" />
+                    <mesh filename="file://$(find vera_description)/meshes/manipulator/gripper_meshes/gripper_left.stl" />
                 </geometry>
             </collision>
             <xacro:inertial_gripper_left_link mass="0.0392347308783591"/>
@@ -324,7 +325,7 @@
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://vera_description/meshes/manipulator/gripper_meshes/gripper_left_end.stl" />
+                    <mesh filename="file://$(find vera_description)/meshes/manipulator/gripper_meshes/gripper_left_end.stl" />
                 </geometry>
                 <material name="white">
                     <color rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
@@ -333,7 +334,7 @@
             <collision>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://vera_description/meshes/manipulator/gripper_meshes/gripper_left_end.stl" />
+                    <mesh filename="file://$(find vera_description)/meshes/manipulator/gripper_meshes/gripper_left_end.stl" />
                 </geometry>
             </collision>
             <xacro:inertial_gripper_left_end_link mass="0.0535202013033793"/>
@@ -364,5 +365,7 @@
         <xacro:gripper_right_end_link/>
         <xacro:gripper_left_link/>
         <xacro:gripper_left_end_link/>
+        <xacro:manipulator_controllers/>
+
     </xacro:macro>
 </robot>

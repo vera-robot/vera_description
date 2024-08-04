@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot name="linorobot2_2wd" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="vera" xmlns:xacro="http://ros.org/wiki/xacro">
 
   <xacro:include filename="$(find vera_description)/urdf/utils/mecanum_properties.urdf.xacro" />
   <xacro:include filename="$(find vera_description)/urdf/mech/base.urdf.xacro" />
@@ -67,7 +67,6 @@
   />
 
   <xacro:manipulator/>
-
   <!-- <xacro:imu/>
   
   <xacro:generic_laser>
